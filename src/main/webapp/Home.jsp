@@ -7,6 +7,8 @@
 <title>Home Page</title>
 </head>
 <body>
+
+<form action="IncubatorServlet" method="POST">
  <center><h2>Home Page</h2></center> 
  <!-- Refer to the video to understand how this works -->
  <div style="text-align: center">
@@ -17,11 +19,9 @@
  <button name="pageredirect" value="closedBatches">View Closed Batches</button>
  <button name="pageredirect" value="allBatches">View All Batches</button>
  
- <a href="IncubatorServlet" value="NewBatch">NewBatch</a></div>
- 
  
  <input type="hidden" name ="pageIdentifier" value="Home">
-
+</form>
 </body>
 </html>
 

@@ -65,6 +65,29 @@ public class IncubatorServlet extends HttpServlet {
 		String action = request.getParameter("action");
 		System.out.println("action = "+action);
 		
+		String pageredirect = request.getParameter("pageredirect");
+		System.out.println("pageredirect = "+pageredirect);
+		
+		if (page.equalsIgnoreCase("Home")){
+			System.out.println("Inside page name part");
+			
+			if(pageredirect.equalsIgnoreCase("newBatch"))
+			request.getRequestDispatcher("NewBatchEntry.jsp").
+			forward(request, response);
+			
+			if(pageredirect.equalsIgnoreCase("upComingBatches"))
+				request.getRequestDispatcher("upComingBatches.jsp").
+				forward(request, response);
+
+			if(pageredirect.equalsIgnoreCase("closedBatches"))
+				request.getRequestDispatcher("closedBatches.jsp").
+				forward(request, response);
+			
+			if(pageredirect.equalsIgnoreCase("allBatches"))
+				request.getRequestDispatcher("allBatches.jsp").
+				forward(request, response);
+		}
+		
 		if (page.equalsIgnoreCase("newBatchEntryPage")){
 			System.out.println("Inside newBatchEntryPage if part");
 			batchDetails=batchEntry.newBatchEntry(request);
