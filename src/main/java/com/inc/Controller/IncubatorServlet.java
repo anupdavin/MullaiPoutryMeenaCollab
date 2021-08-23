@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionContext;
 
+import com.inc.Bean.NewBatchBean;
 import com.inc.DAO.InsertNewBatchToMySQL;
+import com.inc.DAO.ReadBatches;
 import com.inc.EmailOperations.Emailer;
 import com.inc.ExcelEntry.ExcelEntry;
 import com.inc.NewBatchEntry.BatchEntry;
@@ -83,9 +85,16 @@ public class IncubatorServlet extends HttpServlet {
 				request.getRequestDispatcher("closedBatches.jsp").
 				forward(request, response);
 			
-			if(pageredirect.equalsIgnoreCase("allBatches"))
+			if(pageredirect.equalsIgnoreCase("allBatches")) {
+				ArrayList<NewBatchBean> displayAllBatches =
+		        			new ArrayList<NewBatchBean>();
+				ReadBatches readBatches = new ReadBatches();
+				displayAllBatches = readBatches.allBatches();
+            	System.out.println("========================="+displayAllBatches.size());
+				session.setAttribute("displayAllBatches", displayAllBatches);
 				request.getRequestDispatcher("allBatches.jsp").
 				forward(request, response);
+			}
 		}
 		
 		if (page.equalsIgnoreCase("newBatchEntryPage")){
@@ -101,7 +110,7 @@ public class IncubatorServlet extends HttpServlet {
 			System.out.println("batchDetails.index"+i+batchDetails.get(i));
 		*/
 		}
-		else if(action.equalsIgnoreCase("Confirm")){
+		else if(action!=null && action.equalsIgnoreCase("Confirm") && !page.equalsIgnoreCase("newBatchEntryPage") ){
 			System.out.println("Inside Else if confirm");
 			System.out.println("action = "+action);
 			batchDetails=(ArrayList<String>)session.getAttribute("batchDetails");
@@ -114,7 +123,7 @@ public class IncubatorServlet extends HttpServlet {
 			StoreNewBatch.storeNewBatch(batchDetails);
 			System.out.println("Stored data");
 		}
-		else if(action.equalsIgnoreCase("Edit")){
+		else if(action!=null && action.equalsIgnoreCase("Edit")  && !page.equalsIgnoreCase("newBatchEntryPage") ){
 			System.out.println("Inside Else if edit");
 			System.out.println("action = "+action);
 			request.getRequestDispatcher("NewBatchEntry.jsp").

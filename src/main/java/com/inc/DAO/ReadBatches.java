@@ -57,10 +57,13 @@ public class ReadBatches {
 	
 	+ ")";
     
-    
-    
-    public static void main(String[] args) {
 
+  
+    public ArrayList<NewBatchBean> allBatches() {
+
+    	  ArrayList<NewBatchBean> displayAllBatches = new ArrayList<NewBatchBean>();
+
+    	    
         // using try-with-resources to avoid closing resources (boiler plate code)
 
         // Step 1: Establishing a Connection
@@ -77,8 +80,8 @@ public class ReadBatches {
             ResultSet rs = preparedStatement.executeQuery();
 
             //list to store all bean objects
-            ArrayList<NewBatchBean> displayAllBatches =
-        			new ArrayList<NewBatchBean>() ;
+//            ArrayList<NewBatchBean> displayAllBatches =
+//        			new ArrayList<NewBatchBean>() ;
             
             // Step 4: Process the ResultSet object.
             while (rs.next()) {
@@ -95,7 +98,7 @@ public class ReadBatches {
             	String candlingDate = rs.getString("candlingDate");
             	String changeToHatcherDate = rs.getString("changeToHatcherDate");
             	String endDate = rs.getString("endDate");
-
+            	
             	NewBatchBean newBatchBean = new NewBatchBean();
             	
             	newBatchBean.setBatchID(batchID);
@@ -109,7 +112,12 @@ public class ReadBatches {
             	newBatchBean.setChangeToHatcherDate(changeToHatcherDate);
             	newBatchBean.setEndDate(endDate);
             	
-            	displayAllBatches.add(newBatchBean);
+            	try {
+					displayAllBatches.add(newBatchBean);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             	
             	System.out.println(batchID+batchName+
                 		type_of_eggs+
@@ -121,14 +129,21 @@ public class ReadBatches {
                 		changeToHatcherDate+
                 		endDate);
             	
-            	System.out.println();
             
-            	System.out.println(displayAllBatches.get(0).getStartDate());
+            	//System.out.println(displayAllBatches.get(0).getStartDate());
                 		
             }
+        	System.out.println("========================="+displayAllBatches.size());
+
         } catch (SQLException e) {
         	e.printStackTrace();
         }
-        // Step 4: try-with-resource statement will auto close the connection.
+		// Step 4: try-with-resource statement will auto close the connection.
+		try {
+			return displayAllBatches;
+		} catch (Exception e) {
+			return null;
+			
+		}
     }
 }
