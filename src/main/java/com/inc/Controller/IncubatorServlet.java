@@ -1,6 +1,7 @@
 package com.inc.Controller;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Enumeration;
 
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionContext;
 
 import com.inc.Bean.NewBatchBean;
+import com.inc.DAO.ClosedBatches;
 import com.inc.DAO.InsertNewBatchToMySQL;
 import com.inc.DAO.ReadBatches;
 import com.inc.EmailOperations.Emailer;
@@ -78,12 +80,23 @@ public class IncubatorServlet extends HttpServlet {
 			forward(request, response);
 			
 			if(pageredirect.equalsIgnoreCase("upComingBatches"))
+				
 				request.getRequestDispatcher("upComingBatches.jsp").
 				forward(request, response);
 
-			if(pageredirect.equalsIgnoreCase("closedBatches"))
+			if(pageredirect.equalsIgnoreCase("closedBatches")) {
+
+				System.out.println("Inside closedBatches");
+			
+				ArrayList<NewBatchBean> closedBatches =
+	        			new ArrayList<NewBatchBean>();
+				
+					closedBatches = ClosedBatches.closedBatches();
+				
+				session.setAttribute("closedBatches", closedBatches);
 				request.getRequestDispatcher("closedBatches.jsp").
 				forward(request, response);
+			}
 			
 			if(pageredirect.equalsIgnoreCase("allBatches")) {
 				ArrayList<NewBatchBean> displayAllBatches =

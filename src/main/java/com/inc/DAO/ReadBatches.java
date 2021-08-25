@@ -29,6 +29,8 @@ public class ReadBatches {
 	+ " poultry.batches)";
 */
 	private static String startDate;
+	
+	private static final String readClosedBatches =""; 
     
     private static final String readBatchOnSelectedDate = 
     
