@@ -13,7 +13,7 @@ public class InsertNewBatchToMySQL {
 		PreparedStatement preparedStmt = null;
 		ResultSet rs = null;
 		String insertNewBatch = null; 
-		int batchID = 0;
+		int dbID = 0;
 
 		try {
 			//Creating Connection object to MySQL
@@ -46,8 +46,8 @@ public class InsertNewBatchToMySQL {
 				// get batch id
 				rs = preparedStmt.getGeneratedKeys();
 				if(rs.next())
-					batchID = rs.getInt(1);
-				System.out.println("batchID = "+batchID);
+					dbID = rs.getInt(1);
+				System.out.println("dbID = "+dbID);
 			}
 
 
@@ -62,6 +62,6 @@ public class InsertNewBatchToMySQL {
 			}
 		}
 
-		return batchID;
+		return dbID;
 	}
 }

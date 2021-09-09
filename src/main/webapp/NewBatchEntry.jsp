@@ -12,10 +12,19 @@ charset=ISO-8859-1"
 <style>
 
 </style>
+<%
+ArrayList<String> availableRows = (ArrayList<String>)session.getAttribute("availableRows");
+int i=0,j=1;String value =null;
+for(i=0;i<availableRows.size();i++){
+	out.println(availableRows.get(i));
+}
 
+
+%> 
 
 
 <meta charset="ISO-8859-1">
+
 <title>New Batch Entry</title>
 </head>
 <body>
@@ -39,19 +48,17 @@ charset=ISO-8859-1"
 <br><br>
 <label for="selected_row">Choose a row:</label>
 
-<select name="selected_row" id="selected_row" >
-  <option value="01">Row - 01</option>
-  <option value="02">Row - 02</option>
-  <option value="03">Row - 03</option>
-  <option value="04">Row - 04</option>
-  <option value="05">Row - 05</option>
-  <option value="06">Row - 06</option>
-  <option value="07">Row - 07</option>
-  <option value="08">Row - 08</option>
-  <option value="09">Row - 09</option>
-  <option value="10">Row - 10</option>
-  <option value="11">Row - 11</option>
-  <option value="12">Row - 12</option>
+<select name="selected_row" id="selected_row"  multiple>
+
+<%
+for( i=0;i<availableRows.size();i++){
+%>
+
+	  <option value="<%=availableRows.get(i)%>"><%=availableRows.get(i)%></option>
+
+<%
+}
+%>
 </select>
 <br><br>
 
@@ -77,7 +84,7 @@ charset=ISO-8859-1"
 <br>
   <input type="submit" value="Submit"  >
   
-  <input type="hidden" name ="pageIdentifier" value="newBatchEntryPage">
+  <input type="hidden" name ="pageIdentifier" value="NewBatchEntry.jsp">
   
 </form>
 

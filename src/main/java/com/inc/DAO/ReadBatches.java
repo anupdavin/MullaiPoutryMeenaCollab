@@ -59,12 +59,9 @@ public class ReadBatches {
 	
 	+ ")";
     
-
-  
     public ArrayList<NewBatchBean> allBatches() {
 
     	  ArrayList<NewBatchBean> displayAllBatches = new ArrayList<NewBatchBean>();
-
     	    
         // using try-with-resources to avoid closing resources (boiler plate code)
 
@@ -81,10 +78,6 @@ public class ReadBatches {
             // Step 3: Execute the query or update query
             ResultSet rs = preparedStatement.executeQuery();
 
-            //list to store all bean objects
-//            ArrayList<NewBatchBean> displayAllBatches =
-//        			new ArrayList<NewBatchBean>() ;
-            
             // Step 4: Process the ResultSet object.
             while (rs.next()) {
 
@@ -100,6 +93,7 @@ public class ReadBatches {
             	String candlingDate = rs.getString("candlingDate");
             	String changeToHatcherDate = rs.getString("changeToHatcherDate");
             	String endDate = rs.getString("endDate");
+            	int dbID = rs.getInt("dbID");
             	
             	NewBatchBean newBatchBean = new NewBatchBean();
             	
@@ -113,7 +107,7 @@ public class ReadBatches {
             	newBatchBean.setCandlingDate(candlingDate);
             	newBatchBean.setChangeToHatcherDate(changeToHatcherDate);
             	newBatchBean.setEndDate(endDate);
-            	
+            	newBatchBean.setDbID(dbID);
             	try {
 					displayAllBatches.add(newBatchBean);
 				} catch (Exception e) {
@@ -131,11 +125,8 @@ public class ReadBatches {
                 		changeToHatcherDate+
                 		endDate);
             	
-            
-            	//System.out.println(displayAllBatches.get(0).getStartDate());
-                		
             }
-        	System.out.println("========================="+displayAllBatches.size());
+        	System.out.println("displayAllBatches.size() = "+displayAllBatches.size());
 
         } catch (SQLException e) {
         	e.printStackTrace();
@@ -145,7 +136,6 @@ public class ReadBatches {
 			return displayAllBatches;
 		} catch (Exception e) {
 			return null;
-			
 		}
     }
 }

@@ -10,7 +10,7 @@
 
 <form action="IncubatorServlet" method="POST">
  <center><h2>Home Page</h2></center> 
- <!-- Refer to the video to understand how this works -->
+ 
  <div style="text-align: center">
 
  
@@ -19,8 +19,7 @@
  <button name="pageredirect" value="closedBatches">View Closed Batches</button>
  <button name="pageredirect" value="allBatches">View All Batches</button>
  
- 
- <input type="hidden" name ="pageIdentifier" value="Home">
+ <input type="hidden" name ="pageIdentifier" value="Home.jsp">
 </form>
 </body>
 </html>

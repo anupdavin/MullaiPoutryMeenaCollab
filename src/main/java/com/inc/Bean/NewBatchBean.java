@@ -20,6 +20,8 @@ public class NewBatchBean implements Serializable {
 	private String changeToHatcherDate;
 	private String endDate;
 
+	private int  dbID;
+
 	public String getType_of_eggs() {
 		return type_of_eggs;
 	}
@@ -79,6 +81,12 @@ public class NewBatchBean implements Serializable {
 	}
 	public void setBatchName(String batchName) {
 		this.batchName = batchName;
+	}
+	public int getDbID() {
+		return dbID;
+	}
+	public void setDbID(int dbID) {
+		this.dbID = dbID;
 	}
 	
 	

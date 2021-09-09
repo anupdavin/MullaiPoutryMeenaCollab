@@ -63,7 +63,12 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     	<artifactId>poi-ooxml</artifactId>
     	<version>4.1.1</version>
     </dependency>
-    
+    <dependency>
+  <groupId>org.apache.maven.plugins</groupId>
+  <artifactId>maven-compiler-plugin</artifactId>
+  <version>3.8.1</version>
+  <type>maven-plugin</type>
+</dependency>
   </dependencies>
 
   <build>
@@ -71,7 +76,11 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
     
       <plugins>
-    
+    <plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-war-plugin</artifactId>
+    <version>3.3.1</version>
+</plugin>
         <plugin>
           <artifactId>maven-clean-plugin</artifactId>
           <version>3.1.0</version>

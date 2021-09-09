@@ -35,7 +35,7 @@ tr:nth-child(even) {
 <body>
 
   <%
-  ArrayList<NewBatchBean> closedBatches =(ArrayList)session.getAttribute("closedBatches");
+  ArrayList<NewBatchBean> closedBatches =(ArrayList)session.getAttribute("closedBatchesList");
   int i=0;NewBatchBean newBatchBean = new NewBatchBean();
   %> 
 

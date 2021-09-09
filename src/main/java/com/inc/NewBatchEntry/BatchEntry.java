@@ -33,7 +33,6 @@ public class BatchEntry {
 		System.out.println("type_of_loader = "+type_of_loader);
 	
 		String selected_row = request.getParameter("selected_row");
-		selected_row = "R "+selected_row;
 		System.out.println("selected_row = "+selected_row);
 		
 		String no_of_eggs = request.getParameter("no_of_eggs");
